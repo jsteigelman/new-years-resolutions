@@ -10,44 +10,28 @@ import {
   FlatList,
 } from 'react-native'
 
+import ResolutionItem from './components/ResolutionItem'
+import ResolutionInput from './components/ResolutionInput'
+
 export default function App() {
-  const [inputResolution, setInputResolution] = useState('')
   const [resolutions, setResolutions] = useState([])
 
-  const resolutionInputHandler = (input) => {
-    setInputResolution(input)
-  }
-
-  const addResolutionHandler = () => {
-    console.log('The entered resolution is: ' + inputResolution)
+  const addResolutionHandler = (resolution) => {
     setResolutions((currentResolutions) => [
       ...currentResolutions,
-      { key: Math.random().toString(), value: inputResolution},
+      { key: Math.random().toString(), value: resolution },
     ])
   }
 
   return (
     <View style={styles.container}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          placeholder='Enter your resolution'
-          style={styles.textInput}
-          onChangeText={resolutionInputHandler}
-          value={inputResolution}
-        />
-        <Button
-          buttonStyle={styles.addResolutionButton}
-          title='Add'
-          onPress={addResolutionHandler}
-        />
-      </View>
+      <ResolutionInput onAddResolution={addResolutionHandler} />
 
       <FlatList
+        keyExtractor={(item, index) => item.key}
         data={resolutions}
         renderItem={(itemData) => (
-          <View style={styles.resolutionListItem}>
-            <Text>{itemData.item.value}</Text>
-          </View>
+          <ResolutionItem title={itemData.item.value} />
         )}
       />
     </View>
@@ -62,24 +46,6 @@ const styles = StyleSheet.create({
     // flex: 1,
     // alignItems: 'center',
     // justifyContent: 'center',
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  textInput: {
-    width: '80%',
-    borderBottomColor: 'black',
-    borderWidth: 1,
-    padding: 10,
-  },
-  resolutionListItem: {
-    padding: 10,
-    marginVertical: 10,
-    backgroundColor: 'blue',
-    borderColor: 'black',
-    borderWidth: 1,
   },
   addResolutionButton: {
     // color: 'red',
