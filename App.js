@@ -31,7 +31,7 @@ export default function App() {
         keyExtractor={(item, index) => item.key}
         data={resolutions}
         renderItem={(itemData) => (
-          <ResolutionItem title={itemData.item.value} />
+          <ResolutionItem title={itemData.item.value} onDelete={() => console.log('Does this work?')} />
         )}
       />
     </View>

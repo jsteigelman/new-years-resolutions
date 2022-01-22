@@ -1,12 +1,14 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 
 const ResolutionItem = (props) => {
   return (
-    <View style={styles.resolutionListItem}>
+    <TouchableOpacity activeOpacity={0.65} onPress={props.onDelete}>
+    <View style={styles.resolutionListItem} on>
       <Text>{props.title}</Text>
     </View>
+    </TouchableOpacity>
   )
 }
 
