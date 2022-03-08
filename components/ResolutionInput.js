@@ -9,6 +9,11 @@ const ResolutionInput = (props) => {
     setInputResolution(input)
   }
 
+  const newResolutionHandler = () => {
+    props.onAddResolution(inputResolution)
+    setInputResolution('')
+  }
+
   return (
     <Modal
       visible={props.visible}
@@ -28,7 +33,7 @@ const ResolutionInput = (props) => {
         <Button
           buttonStyle={styles.addResolutionButton}
           title='Add'
-          onPress={props.onAddResolution.bind(this, inputResolution)}
+          onPress={newResolutionHandler}
         />
       </View>
     </Modal>
