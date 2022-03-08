@@ -9,7 +9,6 @@ export default function App() {
   const [resolutions, setResolutions] = useState([])
   const [modalVisible, setModalVisible] = useState(false)
 
-
   const addResolutionHandler = (resolution) => {
     setResolutions((currentResolutions) => [
       ...currentResolutions,
@@ -26,11 +25,23 @@ export default function App() {
     })
   }
 
+  const cancelModalHandler = () => {
+    setModalVisible(false)
+  }
+
   return (
     <View style={styles.container}>
-      <Button onPress={() => setModalVisible(!modalVisible)} title="Add new resolution" color="#841584" />
+      <Button
+        onPress={() => setModalVisible(!modalVisible)}
+        title='Add new resolution'
+        color='#841584'
+      />
 
-      <ResolutionInput onAddResolution={addResolutionHandler} visible={modalVisible} />
+      <ResolutionInput
+        onAddResolution={addResolutionHandler}
+        visible={modalVisible}
+        onCancel={cancelModalHandler}
+      />
 
       <FlatList
         keyExtractor={(item, index) => item.key}

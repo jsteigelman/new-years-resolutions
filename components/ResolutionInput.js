@@ -14,6 +14,12 @@ const ResolutionInput = (props) => {
     setInputResolution('')
   }
 
+  const cancelAndClearHandler = () => {
+    props.onCancel()
+    setInputResolution('')
+
+  }
+
   return (
     <Modal
       visible={props.visible}
@@ -30,9 +36,14 @@ const ResolutionInput = (props) => {
           onChangeText={resolutionInputHandler}
           value={inputResolution}
         />
+        <Button 
+        title="Cancel"
+        color="gray"
+        onPress={cancelAndClearHandler}
+        />
         <Button
           buttonStyle={styles.addResolutionButton}
-          title='Add'
+          title="Add Resolution"
           onPress={newResolutionHandler}
         />
       </View>
