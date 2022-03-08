@@ -1,37 +1,47 @@
 import React, { useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  Button,
-  ScrollView,
-  FlatList,
-} from 'react-native'
+import { StyleSheet, View, Button, FlatList } from 'react-native'
 
 import ResolutionItem from './components/ResolutionItem'
 import ResolutionInput from './components/ResolutionInput'
 
 export default function App() {
   const [resolutions, setResolutions] = useState([])
+  const [modalVisible, setModalVisible] = useState(false)
+
 
   const addResolutionHandler = (resolution) => {
     setResolutions((currentResolutions) => [
       ...currentResolutions,
-      { key: Math.random().toString(), value: resolution },
+      { id: Math.random().toString(), value: resolution },
     ])
+    setModalVisible(false)
+  }
+
+  const removeResolutionHandler = (resolutionId) => {
+    setResolutions((currentResolutions) => {
+      return currentResolutions.filter(
+        (resolution) => resolution.id !== resolutionId
+      )
+    })
   }
 
   return (
     <View style={styles.container}>
-      <ResolutionInput onAddResolution={addResolutionHandler} />
+      <Button onPress={() => setModalVisible(!modalVisible)} title="Add new resolution" color="#841584" />
+
+      <ResolutionInput onAddResolution={addResolutionHandler} visible={modalVisible} />
 
       <FlatList
         keyExtractor={(item, index) => item.key}
         data={resolutions}
         renderItem={(itemData) => (
-          <ResolutionItem title={itemData.item.value} onDelete={() => console.log('Does this work?')} />
+          <ResolutionItem
+            id={itemData.item.id}
+            onDelete={removeResolutionHandler}
+            title={itemData.item.value}
+            // key={itemData.item.id}
+          />
         )}
       />
     </View>

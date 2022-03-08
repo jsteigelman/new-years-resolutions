@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, TextInput, Button } from 'react-native'
+import { View, Text, StyleSheet, TextInput, Button, Modal } from 'react-native'
 import ResolutionItem from './ResolutionItem'
 
 const ResolutionInput = (props) => {
@@ -10,26 +10,36 @@ const ResolutionInput = (props) => {
   }
 
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        placeholder='Enter your resolution'
-        style={styles.textInput}
-        onChangeText={resolutionInputHandler}
-        value={inputResolution}
-      />
-      <Button
-        buttonStyle={styles.addResolutionButton}
-        title='Add'
-        onPress={props.onAddResolution.bind(this, inputResolution)}
+    <Modal
+      visible={props.visible}
+      animationType="slide"
+      // onRequestClose={() => {
+      //   Alert.alert('Modal has been closed.')
+      //   setModalVisible(!modalVisible)
+      // }}
+    >
+      <View style={styles.inputContainer}>
+        <TextInput
+          placeholder='Enter your resolution'
+          style={styles.textInput}
+          onChangeText={resolutionInputHandler}
+          value={inputResolution}
         />
-    </View>
+        <Button
+          buttonStyle={styles.addResolutionButton}
+          title='Add'
+          onPress={props.onAddResolution.bind(this, inputResolution)}
+        />
+      </View>
+    </Modal>
   )
 }
 
 const styles = StyleSheet.create({
   inputContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   textInput: {
@@ -37,6 +47,7 @@ const styles = StyleSheet.create({
     borderBottomColor: 'black',
     borderWidth: 1,
     padding: 10,
+    marginBottom: 10
   },
 })
 
