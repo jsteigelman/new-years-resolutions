@@ -17,17 +17,12 @@ const ResolutionInput = (props) => {
   const cancelAndClearHandler = () => {
     props.onCancel()
     setInputResolution('')
-
   }
 
   return (
     <Modal
       visible={props.visible}
-      animationType="slide"
-      // onRequestClose={() => {
-      //   Alert.alert('Modal has been closed.')
-      //   setModalVisible(!modalVisible)
-      // }}
+      animationType='slide'
     >
       <View style={styles.inputContainer}>
         <TextInput
@@ -36,16 +31,20 @@ const ResolutionInput = (props) => {
           onChangeText={resolutionInputHandler}
           value={inputResolution}
         />
-        <Button 
-        title="Cancel"
-        color="gray"
-        onPress={cancelAndClearHandler}
-        />
-        <Button
-          buttonStyle={styles.addResolutionButton}
-          title="Add Resolution"
-          onPress={newResolutionHandler}
-        />
+        <View style={styles.buttonRow}>
+          <View style={styles.cancelButton}>
+            <Button
+              title='Cancel'
+              onPress={cancelAndClearHandler}
+            />
+          </View>
+          <View style={styles.addButton}>
+            <Button
+              title='Add'
+              onPress={newResolutionHandler}
+            />
+          </View>
+        </View>
       </View>
     </Modal>
   )
@@ -63,8 +62,24 @@ const styles = StyleSheet.create({
     borderBottomColor: 'black',
     borderWidth: 1,
     padding: 10,
-    marginBottom: 10
+    marginBottom: 10,
   },
+  buttonRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '80%',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    color: 'white'
+  },
+  cancelButton: {
+    backgroundColor: 'red',
+    width: '40%'
+  },
+  addButton: {
+    backgroundColor: 'blue',
+    width: '40%'
+  }
 })
 
 export default ResolutionInput
