@@ -1,9 +1,17 @@
 import React, { useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View, Button, FlatList } from 'react-native'
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native'
 
 import ResolutionItem from './components/ResolutionItem'
 import ResolutionInput from './components/ResolutionInput'
+import AddResolutionButton from './components/AddResolutionButton'
 
 export default function App() {
   const [resolutions, setResolutions] = useState([])
@@ -25,16 +33,23 @@ export default function App() {
     })
   }
 
+  const modalHandler = () => {
+    setModalVisible(!modalVisible)
+  }
+
   const cancelModalHandler = () => {
     setModalVisible(false)
   }
 
   return (
     <View style={styles.container}>
-      <Button
-        onPress={() => setModalVisible(!modalVisible)}
-        title='Add new resolution'
-        color='#841584'
+      <View style={styles.appTitleContainer}>
+        <Text style={styles.appTitle}>MyResolutions</Text>
+      </View>
+
+      <AddResolutionButton 
+        visible={modalVisible}
+        onAddNewResolution={modalHandler}
       />
 
       <ResolutionInput
@@ -51,7 +66,6 @@ export default function App() {
             id={itemData.item.id}
             onDelete={removeResolutionHandler}
             title={itemData.item.value}
-            // key={itemData.item.id}
           />
         )}
       />
@@ -61,17 +75,20 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: '#DBE3F9',
     paddingTop: 120,
-    paddingHorizontal: 20,
-    // flex: 1,
-    // alignItems: 'center',
-    // justifyContent: 'center',
+    // paddingHorizontal: 20,
+    height: '100%',
   },
-  addResolutionButton: {
-    // color: 'red',
-    // backgroundColor: 'red',
-    // borderColor: 'red',
-    // borderWidth: 1,
+  appTitle: {
+    fontSize: 34,
+    fontWeight: '700',
+    color: '#2C3550',
+    paddingHorizontal: 20,
+  },
+  appTitleContainer: {
+    backgroundColor: '#fff',
+    width: '100%',
+    height: 120,
   },
 })
