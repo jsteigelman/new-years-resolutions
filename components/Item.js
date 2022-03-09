@@ -18,6 +18,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginHorizontal: 20,
     borderRadius: 8,
+    borderColor: '#F0F1FC',
+    borderWidth: 1,
+
   },
   resolutionItemText: {
     padding: 12,

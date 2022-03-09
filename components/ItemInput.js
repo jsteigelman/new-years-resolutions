@@ -56,21 +56,25 @@ const ItemInput = (props) => {
 
 const styles = StyleSheet.create({
   modalContainer: {
-    backgroundColor: '#DBE3F9',
+    height: '50%',
   },
   inputContainer: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#F4F7FF',
+
   },
   textInput: {
     width: '80%',
-    borderColor: 'black',
-    borderWidth: 1,
+    borderColor: '#CCCEDD',
+    borderWidth: 2,
     padding: 10,
-    marginBottom: 10,
-    fontSize: 24,
+    marginBottom: 20,
+    fontSize: 28,
+    borderRadius: 8,
+    backgroundColor: '#fff',
   },
   buttonRow: {
     display: 'flex',
@@ -81,16 +85,20 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   cancelButton: {
-    backgroundColor: 'red',
-    width: '40%',
+    backgroundColor: '#D9E7FF',
+    width: '45%',
+    borderRadius: 8,
+
   },
   addButton: {
-    backgroundColor: 'blue',
-    width: '40%',
+    backgroundColor: '#3ECCFE',
+    width: '45%',
+    borderRadius: 8,
+
   },
   buttonText: {
     color: '#fff',
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: '500',
     padding: 12,
     textAlign: 'center',

@@ -73,20 +73,18 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#DBE3F9',
+    backgroundColor: '#F4F7FF',
     paddingTop: 120,
-    // paddingHorizontal: 20,
     height: '100%',
   },
   appTitle: {
-    fontSize: 34,
+    fontSize: 40,
     fontWeight: '700',
     color: '#2C3550',
     paddingHorizontal: 20,
   },
   appTitleContainer: {
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     width: '100%',
-    height: 120,
   },
 })
