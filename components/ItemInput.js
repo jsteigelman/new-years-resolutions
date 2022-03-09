@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, TextInput, Button, Modal } from 'react-native'
-import ResolutionItem from './ResolutionItem'
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Modal,
+  TouchableOpacity,
+} from 'react-native'
 
-const ResolutionInput = (props) => {
+const ItemInput = (props) => {
   const [inputResolution, setInputResolution] = useState('')
 
   const resolutionInputHandler = (input) => {
@@ -20,10 +26,7 @@ const ResolutionInput = (props) => {
   }
 
   return (
-    <Modal
-      visible={props.visible}
-      animationType='slide'
-    >
+    <Modal visible={props.visible} animationType='slide' style={styles.modalContainer}>
       <View style={styles.inputContainer}>
         <TextInput
           placeholder='Enter your resolution'
@@ -32,18 +35,19 @@ const ResolutionInput = (props) => {
           value={inputResolution}
         />
         <View style={styles.buttonRow}>
-          <View style={styles.cancelButton}>
-            <Button
-              title='Cancel'
-              onPress={cancelAndClearHandler}
-            />
-          </View>
-          <View style={styles.addButton}>
-            <Button
-              title='Add'
-              onPress={newResolutionHandler}
-            />
-          </View>
+          <TouchableOpacity
+            onPress={cancelAndClearHandler}
+            style={styles.cancelButton}
+          >
+            <Text style={styles.buttonText}>Cancel</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={newResolutionHandler}
+            style={styles.addButton}
+          >
+            <Text style={styles.buttonText}>Add</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </Modal>
@@ -51,6 +55,9 @@ const ResolutionInput = (props) => {
 }
 
 const styles = StyleSheet.create({
+  modalContainer: {
+    backgroundColor: '#DBE3F9',
+  },
   inputContainer: {
     flex: 1,
     flexDirection: 'column',
@@ -59,10 +66,11 @@ const styles = StyleSheet.create({
   },
   textInput: {
     width: '80%',
-    borderBottomColor: 'black',
+    borderColor: 'black',
     borderWidth: 1,
     padding: 10,
     marginBottom: 10,
+    fontSize: 24,
   },
   buttonRow: {
     display: 'flex',
@@ -70,16 +78,23 @@ const styles = StyleSheet.create({
     width: '80%',
     justifyContent: 'space-between',
     alignItems: 'center',
-    color: 'white'
+    color: 'white',
   },
   cancelButton: {
     backgroundColor: 'red',
-    width: '40%'
+    width: '40%',
   },
   addButton: {
     backgroundColor: 'blue',
-    width: '40%'
+    width: '40%',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 24,
+    fontWeight: '500',
+    padding: 12,
+    textAlign: 'center',
   }
 })
 
-export default ResolutionInput
+export default ItemInput

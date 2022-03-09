@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
-const ResolutionItem = (props) => {
+const Item = (props) => {
   return (
     <TouchableOpacity activeOpacity={0.65} onPress={() => props.onDelete(props.id)}>
       <View style={styles.resolutionListItem} on>
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default ResolutionItem
+export default Item

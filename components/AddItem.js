@@ -3,7 +3,7 @@ import { Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 
 
-const AddResolutionButton = (props) => {
+const AddItem = (props) => {
 
     const openModal = () => {
         props.onAddNewResolution()
@@ -13,16 +13,15 @@ const AddResolutionButton = (props) => {
         <LinearGradient
         style={styles.gradient}
         colors={[
-          "#ECA6E6",
-          "#EFECCB",
-          "#A8D9E9",
+          'rgba(236,166,230,1)',
+          'rgba(239,236,203,1)',
+          'rgba(168,217,233,1)',
         ]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
       >
         <TouchableOpacity
           style={styles.addResolutionButton}
-        //   onPress={() => setModalVisible(!modalVisible)}
         onPress={openModal}
         >
           <Text style={styles.addResolutionButtonText}>Add Resolution</Text>
@@ -38,7 +37,6 @@ const styles = StyleSheet.create({
 
     },
     addResolutionButton: {
-        // backgroundColor: 'blue',
         borderRadius: 8,
         padding: 10,
         marginHorizontal: 20,
@@ -52,4 +50,4 @@ const styles = StyleSheet.create({
       },
 })
 
-export default AddResolutionButton
+export default AddItem

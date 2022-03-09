@@ -4,14 +4,12 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   FlatList,
-  TouchableOpacity,
 } from 'react-native'
 
-import ResolutionItem from './components/ResolutionItem'
-import ResolutionInput from './components/ResolutionInput'
-import AddResolutionButton from './components/AddResolutionButton'
+import Item from './components/Item'
+import ItemInput from './components/ItemInput'
+import AddItem from './components/AddItem'
 
 export default function App() {
   const [resolutions, setResolutions] = useState([])
@@ -47,12 +45,12 @@ export default function App() {
         <Text style={styles.appTitle}>MyResolutions</Text>
       </View>
 
-      <AddResolutionButton 
+      <AddItem 
         visible={modalVisible}
         onAddNewResolution={modalHandler}
       />
 
-      <ResolutionInput
+      <ItemInput
         onAddResolution={addResolutionHandler}
         visible={modalVisible}
         onCancel={cancelModalHandler}
@@ -62,7 +60,7 @@ export default function App() {
         keyExtractor={(item, index) => item.key}
         data={resolutions}
         renderItem={(itemData) => (
-          <ResolutionItem
+          <Item
             id={itemData.item.id}
             onDelete={removeResolutionHandler}
             title={itemData.item.value}
